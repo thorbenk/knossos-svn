@@ -220,7 +220,7 @@ OTHER_FILES += \
     style.qss
 
 
-DEFINES += REVISION=\\\"$$system(svnversion)\\\"
+DEFINES += REVISION=\\\"git-svn\\\"
 
 mac {
     INCLUDEPATH += /usr/include/Python2.7 \
