@@ -73,30 +73,6 @@ SET(KNOSSOS_SOURCES
     qsort.cpp
     ftp.cpp
     task.cpp
-    openjpeg/cio.c
-    openjpeg/bio.c
-    openjpeg/color.c
-    openjpeg/convert.c
-    openjpeg/dwt.c
-    openjpeg/event.c
-    openjpeg/function_list.c
-    openjpeg/image.c
-    openjpeg/index.c
-    openjpeg/invert.c
-    openjpeg/j2k.c
-    openjpeg/jp2.c
-    openjpeg/mct.c
-    openjpeg/mqc.c
-    openjpeg/openjpeg.c
-    openjpeg/opj_clock.c
-    openjpeg/opj_decompress.c
-    openjpeg/opj_getopt.c
-    openjpeg/pi.c
-    openjpeg/raw.c
-    openjpeg/t1.c
-    openjpeg/t2.c
-    openjpeg/tcd.c
-    openjpeg/tgt.c
     test/testcommentswidget.cpp
     test/testskeletonviewport.cpp
     test/testtoolswidget.cpp
@@ -135,6 +111,7 @@ target_link_libraries(knossos
     ${OPENGL_LIBRARIES}
     ${CURL_LIBRARIES}
     ${GLUT_LIBRARIES}
+    openjpeg_knossos
 )
 
 qt5_use_modules(knossos OpenGL Network Xml Test Help Widgets)
@@ -143,4 +120,4 @@ qt5_wrap_ui(KNOSSOS_UIS_HEADERS
     ${KNOSSOS_UIS}
 )
 
-
+add_subdirectory(openjpeg)
