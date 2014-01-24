@@ -1,11 +1,14 @@
 project(knossos)
 
 cmake_minimum_required(VERSION 2.8.9)
+set(CMAKE_MODULE_PATH ${CMAKE_CURRENT_SOURCE_DIR}/cmake/modules)
 
 add_definitions(-DREVISION="\\"git-svn\\"")
 
 set(CMAKE_AUTOMOC ON)
 set(CMAKE_INCLUDE_CURRENT_DIR ON)
+
+set(Python_ADDITIONAL_VERSIONS 2.7)
 
 find_package(GLUT REQUIRED)
 find_package(OpenGL REQUIRED)
@@ -121,3 +124,21 @@ qt5_wrap_ui(KNOSSOS_UIS_HEADERS
 )
 
 add_subdirectory(openjpeg)
+
+# example of how to wrap a widget using PyQt5 and sip
+
+find_package(SIP REQUIRED)
+include_directories(${SIP_INCLUDE_DIR})
+find_package(PyQt5 REQUIRED)
+
+set(SIP_INCLUDES "${PYQT5_SIP_INCLUDES}")
+set(SIP_EXTRA_OPTIONS "${PYQT5_SIP_FLAGS}")
+include(SIPMacros)
+
+add_library(testwidget testwidget.cpp)
+qt5_use_modules(testwidget Widgets)
+
+add_sip_python_module(pyknossos
+    testwidget.sip
+    testwidget
+)
